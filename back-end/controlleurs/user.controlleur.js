@@ -5,7 +5,7 @@ export const getUsers = async (req, res) => {
 		const loggedInUserId = req.user.id;
 
 		const query = `
-			SELECT id, username ,fullname ,gender 
+			SELECT id, username,fullname,profilepic,gender 
 			FROM users
 			WHERE id != $1
 		`;

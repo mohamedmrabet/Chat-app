@@ -4,7 +4,7 @@ import { protectRoute } from "../middleware/protectRoute.js";
 
 const router = express.Router()
 
-router.get('/',protectRoute,getUsers)
+router.get('/get',protectRoute,getUsers)
 
 
 export default router

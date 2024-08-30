@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import pool from "../db/connectToPst.js"
+import pool from "../db/connectToPst.js";
 import generateTokenAndSetCookie from '../Utils/generaterToken.js';
 
 export const signup = async (req, res) => {
@@ -40,18 +40,19 @@ export const signup = async (req, res) => {
         if (newUser) {
             generateTokenAndSetCookie(newUser.id, res);
 
-            res.status(201).json({
+            // Return user data
+            return res.status(201).json({
                 _id: newUser.id,
                 fullName: newUser.fullname,
                 username: newUser.username,
                 profilePic: newUser.profilepic,
             });
         } else {
-            res.status(400).json({ error: 'Invalid user data' });
+            return res.status(400).json({ error: 'Invalid user data' });
         }
     } catch (error) {
         console.log('Error in signup controller', error.message);
-        res.status(500).json({ error: 'Internal Server Error' });
+        return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
 
